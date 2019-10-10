@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateBarMode">
+        <attr name="statusbar_light_mode" format="boolean"/>
+    </declare-styleable>
+
+    <attr name="StateBarModeStyle" format="reference"/>
+
+</resources>
