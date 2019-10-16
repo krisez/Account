@@ -62,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
         mTopBarLayout.setVisibility(View.VISIBLE);
         mTopBar = findViewById(R.id.topbar);
         mTopBar.setTitle("");
-        setTranslucent(mTopBarLayout);
+        setTranslucent();
     }
 
     protected void hideToolbar() {
