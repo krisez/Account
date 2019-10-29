@@ -8,10 +8,19 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textSize">18sp</item> <!--  搞掂字体大小-->
         <item name="elevation">0dp</item>
+        <item name="QMUITopBarStyle">@style/APPTopBar</item>
     </style>
 
     <style name="StateBarModeStyle">
         <item name="statusbar_light_mode">true</item>
+    </style>
+
+    <style name="APPTopBar" parent="QMUI.TopBar">
+        <item name="qmui_topbar_bg_color">?attr/app_primary_color</item>
+        <item name="qmui_topbar_title_color">@color/qmui_config_color_pure_black</item>
+        <item name="qmui_topbar_title_text_size">17sp</item>
+        <item name="qmui_topbar_height">48dp</item>
+        <item name="qmui_topbar_image_btn_height">48dp</item>
     </style>
 
 </resources>

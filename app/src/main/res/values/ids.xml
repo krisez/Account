@@ -2,4 +2,6 @@
 <resources>
     <item name="main_add_group" type="id"/>
     <item name="main_top_head" type="id"/>
+    <item type="id" name="statusbarutil_fake_status_bar_view" />
+    <item type="id" name="statusbarutil_translucent_view" />
 </resources>

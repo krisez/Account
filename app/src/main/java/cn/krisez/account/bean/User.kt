@@ -5,6 +5,6 @@ import cn.bmob.v3.BmobUser
 /**
  *Created by zhouchaoxing on 2019/10/16
  */
-class UserBean : BmobUser() {
+class User : BmobUser() {
     public var head: String = ""
 }

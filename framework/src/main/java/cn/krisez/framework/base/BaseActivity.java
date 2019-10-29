@@ -57,12 +57,12 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
         mSwipeRefreshLayout.setEnabled(enable);
     }
 
-    protected void setUpTopBar() {
+    protected void setUpTopBar(boolean light) {
         mTopBarLayout = findViewById(R.id.topbar_layout);
         mTopBarLayout.setVisibility(View.VISIBLE);
         mTopBar = findViewById(R.id.topbar);
         mTopBar.setTitle("");
-        setTranslucent();
+        setTranslucent(light);
     }
 
     protected void hideToolbar() {
@@ -72,20 +72,17 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
         mTopBarLayout.setVisibility(View.VISIBLE);
     }
 
-    protected void setTranslucent() {
+    protected void setTranslucent(boolean light) {
         QMUIStatusBarHelper.translucent(this); // 沉浸式状态栏
-        TypedArray array1 = obtainStyledAttributes(null, R.styleable.StateBarMode,R.attr.StateBarModeStyle, 0);
-        boolean isLigntMode = array1.getBoolean(R.styleable.StateBarMode_statusbar_light_mode, false);
-        array1.recycle();
-        if (isLigntMode) {
+        if(light){
             QMUIStatusBarHelper.setStatusBarLightMode(this);
-        } else {
+        }else{
             QMUIStatusBarHelper.setStatusBarDarkMode(this);
         }
     }
 
-    protected void setTranslucent(View view) {
-        setTranslucent();
+    protected void setTranslucent(View view,boolean light) {
+        setTranslucent(light);
         TypedArray array = obtainStyledAttributes(null, R.styleable.QMUITopBar, R.attr.QMUITopBarStyle, 0);
         int color = array.getColor(R.styleable.QMUITopBar_qmui_topbar_bg_color, getResources().getColor(R.color.qmui_config_color_transparent));
         array.recycle();
