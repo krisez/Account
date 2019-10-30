@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/red</item>
+        <item name="colorAccent">@color/color_pink</item>
         <item name="app_primary_color">@color/white</item>
     </style>
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:background="@color/color_light_pink"
     android:orientation="vertical">
@@ -10,6 +11,7 @@
         android:id="@+id/person_head"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        app:qmui_is_circle="true"
         android:layout_gravity="center" />
 
     <TextView
