@@ -32,8 +32,9 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
 
         mSwipeRefreshLayout = findViewById(R.id.base_layout);
         View view = newView();
-        assert view != null;
-        mSwipeRefreshLayout.addView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        if (view != null) {
+            mSwipeRefreshLayout.addView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
         mSwipeRefreshLayout.setEnabled(false);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.black, R.color.blue);
@@ -74,14 +75,14 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
 
     protected void setTranslucent(boolean light) {
         QMUIStatusBarHelper.translucent(this); // 沉浸式状态栏
-        if(light){
+        if (light) {
             QMUIStatusBarHelper.setStatusBarLightMode(this);
-        }else{
+        } else {
             QMUIStatusBarHelper.setStatusBarDarkMode(this);
         }
     }
 
-    protected void setTranslucent(View view,boolean light) {
+    protected void setTranslucent(View view, boolean light) {
         setTranslucent(light);
         TypedArray array = obtainStyledAttributes(null, R.styleable.QMUITopBar, R.attr.QMUITopBarStyle, 0);
         int color = array.getColor(R.styleable.QMUITopBar_qmui_topbar_bg_color, getResources().getColor(R.color.qmui_config_color_transparent));
@@ -132,6 +133,5 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeRef
 
     public void disableRefresh() {
         handle(HandleType.REFRESH, null);
-
     }
 }

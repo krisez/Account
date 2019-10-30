@@ -14,26 +14,39 @@ android {
         ndk {
             //选择要添加的对应cpu类型的so库
             abiFilters 'armeabi', 'armeabi-v7a'
-            //, 'armeabi-v8a', 'x86','x86_64', 'mips', 'mips64'
         }
+        buildConfigField("String","OWN_URL","\"$OWN_URL\"")
+        buildConfigField("String","BMOB_KEY","\"a9fe93ffc254499038a17856b673241e\"")
+
     }
 
-    /*signingConfigs {
+    signingConfigs {
         release {
             storeFile file(STORE_FILE)
             storePassword STORE_PASSWORD
             keyAlias KEY_ALIAS
             keyPassword KEY_PASSWORD
+            v2SigningEnabled true
         }
-    }*/
+    }
 
     buildTypes {
         release {
+            debuggable false
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
+            buildConfigField("boolean","logs","false")
+        }
+        debug{
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField("boolean","logs","true")
         }
     }
     useLibrary 'org.apache.http.legacy'
@@ -58,9 +71,9 @@ dependencies {
     implementation 'cn.bmob.android:bmob-sdk:3.7.4'
     implementation "io.reactivex.rxjava2:rxjava:2.2.2"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'com.squareup.okio:okio:2.1.0'
+    implementation 'com.squareup.okio:okio:2.2.2'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.0.1'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 

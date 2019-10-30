@@ -14,7 +14,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        Bmob.resetDomain("http://sdk.krisez.cn/8/");
-        Bmob.initialize(this, "a9fe93ffc254499038a17856b673241e")
+        Bmob.resetDomain(BuildConfig.OWN_URL)
+        Bmob.initialize(this,BuildConfig.BMOB_KEY)
     }
 }

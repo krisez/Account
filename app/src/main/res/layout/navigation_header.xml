@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@color/color_light_pink"
+    android:orientation="vertical">
+
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        android:id="@+id/person_head"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/person_nick"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
