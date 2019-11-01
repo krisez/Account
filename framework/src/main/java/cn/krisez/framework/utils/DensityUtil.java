@@ -1,11 +1,17 @@
 package cn.krisez.framework.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.provider.CalendarContract;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,6 +35,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import static android.content.Context.TELEPHONY_SERVICE;
+import static android.content.Context.WIFI_SERVICE;
 
 public class DensityUtil {
 
@@ -70,26 +80,27 @@ public class DensityUtil {
     }
 
     public static String getTime() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",new Locale("zh","CN"));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("zh", "CN"));
         return format.format(new Date());
     }
 
     /**
      * 两个日期比较
+     *
      * @param date1 日期
      * @param date2 日期
      * @return -1 date1大;0 相等;1 date2 大
      */
-    public static int compareTime(String date1,String date2){
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",new Locale("zh","CN"));
+    public static int compareTime(String date1, String date2) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("zh", "CN"));
         try {
             Date d1 = dateFormat.parse(date1);
             Date d2 = dateFormat.parse(date2);
-            if(d1.equals(d2)){
+            if (d1.equals(d2)) {
                 return 0;
-            }else if(d1.before(d2)){
+            } else if (d1.before(d2)) {
                 return 1;
-            }else if(d1.after(d2)){
+            } else if (d1.after(d2)) {
                 return -1;
             }
         } catch (ParseException e) {
@@ -275,5 +286,31 @@ public class DensityUtil {
             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
         }
         return inSampleSize;
+    }
+
+    public static String getIMEI(Context context) {
+        String imei = "";
+        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.READ_PHONE_STATE) == 0) {
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(TELEPHONY_SERVICE);
+            if (tm != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    imei = tm.getImei();
+                } else {
+                    imei = tm.getDeviceId();
+                }
+            }
+        }
+        return imei;
+    }
+
+    public static String getAppVersionName(Context context){
+        String versionName = null;
+        try{
+            versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return versionName;
     }
 }

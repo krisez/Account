@@ -18,7 +18,7 @@ import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 import cn.krisez.framework.R;
 
 
-public abstract class BaseActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, IBaseView {
+public abstract class BaseActivity extends CheckPermissionsActivity implements SwipeRefreshLayout.OnRefreshListener, IBaseView {
 
     public SwipeRefreshLayout mSwipeRefreshLayout;
     private Presenter mPresenter;

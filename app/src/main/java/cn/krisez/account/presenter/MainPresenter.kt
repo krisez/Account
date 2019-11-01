@@ -9,5 +9,6 @@ import cn.krisez.framework.base.Presenter
  */
 class MainPresenter(view: IMainView, context:Context) : Presenter(view,context) {
     override fun onCreate() {
+
     }
 }

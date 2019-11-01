@@ -25,6 +25,7 @@ class MainActivity : BaseActivity(), IMainView {
         setUpTopBar(true)
         initHead()
         initNavigation()
+        checkPermissions(needPermissions)
     }
 
     private fun initNavigation() {
