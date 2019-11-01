@@ -10,7 +10,7 @@ import cn.bmob.v3.listener.FindListener
 import cn.bmob.v3.listener.SaveListener
 import cn.krisez.account.bean.InstanceBean
 import cn.krisez.account.utils.Logs
-import cn.krisez.account.utils.SharePrefrencesUtils
+import cn.krisez.account.utils.SharePreferencesUtils
 import cn.krisez.framework.utils.DensityUtil
 
 /**
@@ -21,7 +21,7 @@ class InstallationServices : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         var imei = DensityUtil.getIMEI(this)
         if (imei.isEmpty()) {
-            imei = SharePrefrencesUtils.getUUID()
+            imei = SharePreferencesUtils.getUUID()
         }
         val bmobQuery = BmobQuery<InstanceBean>()
         bmobQuery.addWhereEqualTo("imei", imei)
@@ -41,7 +41,7 @@ class InstallationServices : Service() {
                     }
                 }else{
                     stopSelf()
-                    e.message?.let { Logs.d("GetIMEI", it) }
+                    e.message?.let { Logs.e("GetIMEI", it) }
                 }
             }
         })

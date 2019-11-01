@@ -18,6 +18,9 @@ class SettingActivity:BaseActivity(){
     override fun presenter(): Presenter? = null
 
     override fun init(bundle: Bundle?) {
+        setRefreshEnable(true)
+        setUpTopBar(true)
+        showBackIconAndClick()
     }
 
 }

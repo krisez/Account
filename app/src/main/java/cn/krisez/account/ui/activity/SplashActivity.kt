@@ -9,6 +9,7 @@ import cn.bmob.v3.listener.FindListener
 import cn.krisez.account.R
 import cn.krisez.account.bean.VersionBean
 import cn.krisez.account.services.DownloadFileServices
+import cn.krisez.account.utils.Logs
 import cn.krisez.framework.utils.DensityUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
@@ -31,6 +32,8 @@ class SplashActivity : AppCompatActivity() {
         query.setLimit(1)
         query.findObjects(object : FindListener<VersionBean>() {
             override fun done(list: MutableList<VersionBean>?, e: BmobException?) {
+                Logs.d(localClassName,list.toString())
+                Logs.e(localClassName,e.toString())
                 if (e == null) {
                     if (list != null && list.isNotEmpty()) {
                         val bean = list[0]

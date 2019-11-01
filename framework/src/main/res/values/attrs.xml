@@ -6,6 +6,6 @@
 
     <attr name="StateBarModeStyle" format="reference"/>
     <attr name="app_primary_color" format="color"/> <!-- topbar -->
-    <attr name="app_content_bg_color" format="color"/> <!-- content-->
+    <attr name="app_top_text_color" format="color"/> <!-- content-->
 
 </resources>

@@ -15,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_person.*
  */
 class FeedbackActivity : BaseActivity() {
     override fun init(bundle: Bundle?) {
+        setRefreshEnable(true)
+        setUpTopBar(true)
+        showBackIconAndClick()
     }
 
     override fun onRefresh() {

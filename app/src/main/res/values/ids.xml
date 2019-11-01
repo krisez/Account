@@ -4,4 +4,5 @@
     <item name="main_top_head" type="id"/>
     <item type="id" name="statusbarutil_fake_status_bar_view" />
     <item type="id" name="statusbarutil_translucent_view" />
+    <item name="login_register" type="id"/>
 </resources>

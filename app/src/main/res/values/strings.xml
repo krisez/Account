@@ -5,4 +5,9 @@
     <string name="set_center">设置中心</string>
     <string name="feedback">反馈</string>
     <string name="about">关于</string>
+    <string name="submit_success">提交成功</string>
+    <string name="account">账号</string>
+    <string name="password_hint">密码：6~15位</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
 </resources>
