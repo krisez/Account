@@ -5,6 +5,7 @@ import android.view.View
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.SaveListener
+import cn.krisez.account.App
 import cn.krisez.account.R
 import cn.krisez.account.bean.User
 import cn.krisez.account.utils.Logs
@@ -29,9 +30,10 @@ class RegisterActivity : BaseActivity() {
                 user.signUp(object : SaveListener<User>() {
                     override fun done(u: User?, e: BmobException?) {
                         if (e == null) {
-                            Logs.d(javaClass.name, "${BmobUser.isLogin()}")
-//                            setResult(RESULT_OK)
-//                            finish()
+                            Logs.d(localClassName, "${BmobUser.isLogin()}")
+                            u?.let { App.user = it }
+                            setResult(RESULT_OK)
+                            finish()
                         } else {
                             error(e.message)
                         }

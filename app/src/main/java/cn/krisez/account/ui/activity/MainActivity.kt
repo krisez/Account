@@ -81,41 +81,43 @@ class MainActivity : BaseActivity(), IMainView {
         head.isCircle = true
         mTopBar.addLeftView(head, R.id.main_top_head, mTopBar.generateTopBarImageButtonLayoutParams())
 
-        mTopBar.addRightImageButton(R.drawable.add, R.id.main_add_group).setOnClickListener {
-            if (!BmobUser.isLogin()) {
-                error("请先登录~")
-                return@setOnClickListener
+        if (SharePreferencesUtils.getGid().isNullOrEmpty()) {
+            mTopBar.addRightImageButton(R.drawable.add, R.id.main_add_group).setOnClickListener {
+                if (!BmobUser.isLogin()) {
+                    error("请先登录~")
+                    return@setOnClickListener
+                }
+                QMUIDialog.MenuDialogBuilder(this)
+                        .addItems(arrayOf("创建队伍", "加入队伍")) { dialog, index ->
+                            when (index) {
+                                0 -> {
+                                    tipLog = QMUITipDialog.Builder(this).setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                                            .setTipWord("正在创建")
+                                            .create(false)
+                                    tipLog?.show()
+                                    dialog.dismiss()
+                                    mPresenter?.createGroup()
+                                }
+                                1 -> {
+                                    dialog.dismiss()
+                                    val b = QMUIDialog.EditTextDialogBuilder(this)
+                                    b.setTitle("加入队伍")
+                                            .setPlaceholder("队伍ID")
+                                            .setInputType(InputType.TYPE_CLASS_TEXT)
+                                            .addAction("取消") { d, _ -> d.dismiss() }
+                                            .addAction(0, "提交", QMUIDialogAction.ACTION_PROP_NEGATIVE) { d, _ ->
+                                                SharePreferencesUtils.saveGroupGid(b.editText.text.toString())
+                                                mPresenter?.addGroup()
+                                                tipLog = QMUITipDialog.Builder(this).setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                                                        .setTipWord("提交中~")
+                                                        .create(false)
+                                                tipLog?.show()
+                                                d.dismiss()
+                                            }.show()
+                                }
+                            }
+                        }.show()
             }
-            QMUIDialog.MenuDialogBuilder(this)
-                    .addItems(arrayOf("创建队伍", "加入队伍")) { dialog, index ->
-                        when (index) {
-                            0 -> {
-                                tipLog = QMUITipDialog.Builder(this).setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                                        .setTipWord("正在创建")
-                                        .create(false)
-                                tipLog?.show()
-                                dialog.dismiss()
-                                mPresenter?.createGroup()
-                            }
-                            1 -> {
-                                dialog.dismiss()
-                                val b = QMUIDialog.EditTextDialogBuilder(this)
-                                b.setTitle("加入队伍")
-                                        .setPlaceholder("队伍ID")
-                                        .setInputType(InputType.TYPE_CLASS_TEXT)
-                                        .addAction("取消") { d, _ -> d.dismiss() }
-                                        .addAction(0, "提交", QMUIDialogAction.ACTION_PROP_NEGATIVE) { d, _ ->
-                                            SharePreferencesUtils.saveGroupGid(b.editText.text.toString())
-                                            mPresenter?.addGroup()
-                                            tipLog = QMUITipDialog.Builder(this).setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                                                    .setTipWord("提交中~")
-                                                    .create(false)
-                                            tipLog?.show()
-                                            d.dismiss()
-                                        }.show()
-                            }
-                        }
-                    }.show()
         }
 
         head.setOnClickListener {
@@ -144,6 +146,7 @@ class MainActivity : BaseActivity(), IMainView {
     override fun showDialog(s: String) {
         tipLog?.dismiss()
         SharePreferencesUtils.saveGroupGid(s)
+        mTopBar.removeAllRightViews()
         QMUIDialog.MessageDialogBuilder(this)
                 .setMessage(s)
                 .addAction("复制") { d, _ ->

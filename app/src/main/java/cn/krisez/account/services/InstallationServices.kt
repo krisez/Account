@@ -23,26 +23,13 @@ class InstallationServices : Service() {
         if (imei.isEmpty()) {
             imei = SharePreferencesUtils.getUUID()
         }
-        val bmobQuery = BmobQuery<InstanceBean>()
-        bmobQuery.addWhereEqualTo("imei", imei)
-        bmobQuery.findObjects(object : FindListener<InstanceBean>() {
-            override fun done(list: MutableList<InstanceBean>?, e: BmobException?) {
-                if (e == null) {
-                    if (list == null || list.size == 0) {
-                        val install = InstanceBean()
-                        install.imei = imei
-                        install.model = Build.MODEL
-                        install.ver = Build.VERSION.SDK_INT
-                        install.save(object : SaveListener<String>() {
-                            override fun done(p0: String?, p1: BmobException?) {
-                                stopSelf()
-                            }
-                        })
-                    }
-                }else{
-                    stopSelf()
-                    e.message?.let { Logs.e("GetIMEI", it) }
-                }
+        val install = InstanceBean()
+        install.imei = imei
+        install.model = Build.MODEL
+        install.ver = Build.VERSION.SDK_INT
+        install.save(object : SaveListener<String>() {
+            override fun done(p0: String?, p1: BmobException?) {
+                stopSelf()
             }
         })
         return super.onStartCommand(intent, flags, startId)

@@ -8,6 +8,7 @@ import android.view.View
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.LogInListener
+import cn.krisez.account.App
 import cn.krisez.account.R
 import cn.krisez.account.bean.User
 import cn.krisez.framework.base.BaseActivity
@@ -27,6 +28,7 @@ class LoginActivity : BaseActivity() {
                 BmobUser.loginByAccount(login_user.text.toString(), login_pw.text.toString(), object : LogInListener<User>() {
                     override fun done(u: User?, e: BmobException?) {
                         if (e == null) {
+                            u?.let { App.user = it }
                             setResult(Activity.RESULT_OK)
                             finish()
                         } else {

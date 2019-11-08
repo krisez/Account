@@ -32,8 +32,8 @@ class SplashActivity : AppCompatActivity() {
         query.setLimit(1)
         query.findObjects(object : FindListener<VersionBean>() {
             override fun done(list: MutableList<VersionBean>?, e: BmobException?) {
-                Logs.d(localClassName,list.toString())
-                Logs.e(localClassName,e.toString())
+                Logs.d(localClassName,"数据："+list.toString())
+                Logs.e(localClassName,"error："+e.toString())
                 if (e == null) {
                     if (list != null && list.isNotEmpty()) {
                         val bean = list[0]
