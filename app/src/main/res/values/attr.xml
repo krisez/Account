@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <declare-styleable name="XEditText">
+        <attr name="edittext_separator" format="string"/>
+        <attr name="edittext_disableClear" format="boolean"/>
+        <attr name="edittext_clearDrawable" format="reference"/>
+        <attr name="edittext_showPwdDrawable" format="reference"/>
+        <attr name="edittext_hidePwdDrawable" format="reference"/>
+        <attr name="edittext_disableEmoji" format="boolean"/>
+        <attr name="edittext_disableTogglePwdDrawable" format="boolean"/>
+    </declare-styleable>
 </resources>
