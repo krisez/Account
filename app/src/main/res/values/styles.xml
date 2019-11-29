@@ -9,4 +9,10 @@
         <item name="app_top_text_color">@color/color_pink</item>
     </style>
 
+    <style name="LunchTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/splash_layers</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

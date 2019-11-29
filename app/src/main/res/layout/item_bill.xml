@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:orientation="horizontal">
+    android:layout_height="64dp">
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/item_bill_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:qmui_is_circle="true" />
+
+        <TextView
+            android:id="@+id/item_bill_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:lines="1"
+            android:text="红包"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_sub_title"
+            app:layout_constraintBottom_toTopOf="@id/item_bill_describe"
+            app:layout_constraintStart_toEndOf="@id/item_bill_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_bill_describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="XXX的红包"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_bill_icon"
+            app:layout_constraintTop_toBottomOf="@id/item_bill_type" />
+
+        <TextView
+            android:id="@+id/item_bill_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-50.00元"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -38,7 +38,14 @@ class MainActivity : BaseActivity(), IMainView {
         setUpTopBar(true)
         initHead()
         initNavigation()
+        initListener()
         checkPermissions(needPermissions)
+    }
+
+    private fun initListener(){
+        add_new_bill.setOnClickListener{
+            
+        }
     }
 
     private fun initNavigation() {

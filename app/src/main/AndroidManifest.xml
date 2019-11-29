@@ -29,6 +29,7 @@
         >
         <activity
             android:name=".ui.activity.SplashActivity"
+            android:theme="@style/LunchTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +43,7 @@
         <activity android:name=".ui.activity.SettingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.AboutActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.FeedbackActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.AddBillActivity" android:screenOrientation="portrait"/>
         <service android:name=".services.InstallationServices"/>
         <service android:name=".services.DownloadFileServices"/>
         <provider
