@@ -44,7 +44,7 @@ class MainActivity : BaseActivity(), IMainView {
 
     private fun initListener(){
         add_new_bill.setOnClickListener{
-            
+            startActivity(Intent(this,AddBillActivity::class.java))
         }
     }
 
