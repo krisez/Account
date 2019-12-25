@@ -9,9 +9,11 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bmob.v3.BmobUser
 import cn.krisez.account.App
 import cn.krisez.account.R
+import cn.krisez.account.adapter.BillAdapter
 import cn.krisez.account.bean.ConsumerBean
 import cn.krisez.account.bean.User
 import cn.krisez.account.presenter.MainPresenter
@@ -32,6 +34,7 @@ import kotlinx.android.synthetic.main.navigation_header.view.*
 class MainActivity : BaseActivity(), IMainView {
 
     private var mPresenter: MainPresenter? = null
+    private val mAdapter:BillAdapter = BillAdapter(arrayListOf())
 
     override fun init(bundle: Bundle?) {
         setRefreshEnable(true)
@@ -40,11 +43,18 @@ class MainActivity : BaseActivity(), IMainView {
         initNavigation()
         initListener()
         checkPermissions(needPermissions)
+
+        bill_recycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        bill_recycler.adapter = mAdapter
     }
 
     private fun initListener(){
         add_new_bill.setOnClickListener{
             startActivity(Intent(this,AddBillActivity::class.java))
+        }
+        mAdapter.setOnItemClickListener{a,_,p ->
+            val consumerBean = a.data[p] as ConsumerBean
+            startActivity(Intent(this,AddBillActivity::class.java).putExtra("bean",consumerBean))
         }
     }
 
@@ -141,7 +151,8 @@ class MainActivity : BaseActivity(), IMainView {
                 .into(group_user_other)
     }
 
-    override fun notifyList(arrayList: ArrayList<ConsumerBean>) {
+    override fun notifyList(list: MutableList<ConsumerBean>) {
+        mAdapter.setNewData(list)
         disableRefresh()
     }
 

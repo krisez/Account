@@ -85,6 +85,19 @@ class MainPresenter(view: IMainView, context: Context) : Presenter(view, context
     private fun queryBill() {
         val query = BmobQuery<ConsumerBean>()
         query.addWhereEqualTo("consumer", App.user)
+        query.findObjects(object : FindListener<ConsumerBean>() {
+            override fun done(list: MutableList<ConsumerBean>?, e: BmobException?) {
+                Log.d("MainPresenter","done")
+                if (e == null) {
+                    if (!list.isNullOrEmpty()) {
+                        mView.notifyList(list)
+                    }
+                }else{
+                    mView.error(e.message)
+                }
+            }
+
+        })
     }
 
     fun addGroup() {

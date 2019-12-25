@@ -10,10 +10,12 @@ import cn.krisez.account.R
 import cn.krisez.account.bean.VersionBean
 import cn.krisez.account.services.DownloadFileServices
 import cn.krisez.account.utils.Logs
+import cn.krisez.account.utils.toast
 import cn.krisez.framework.utils.DensityUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
+import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
  *Created by zhouchaoxing on 2019/10/31
@@ -58,6 +60,10 @@ class SplashActivity : AppCompatActivity() {
                         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                         finish()
                     }
+                }else{
+                    e.message?.toast(this@SplashActivity)
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
                 }
             }
         })

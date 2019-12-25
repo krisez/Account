@@ -11,6 +11,7 @@ class ConsumerBean : BmobObject() {
     var type: Int = 0
     var time: String = "00-00 00:00"//月-日 时:分
     var describe: String = ""
+    var consumer :User? = null
 
     fun getTypeName(): String = Utils.getTypeName(type)
 }

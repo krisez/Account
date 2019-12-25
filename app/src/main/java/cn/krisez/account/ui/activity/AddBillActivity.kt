@@ -3,6 +3,7 @@ package cn.krisez.account.ui.activity
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import cn.krisez.account.App
 import cn.krisez.account.R
 import cn.krisez.account.bean.ConsumerBean
 import cn.krisez.account.presenter.AddBillPresenter
@@ -18,6 +19,7 @@ class AddBillActivity :BaseActivity(),IAddBillView {
     private var presenter:AddBillPresenter? = null
     private var mObjectId:String? = null
     override fun init(bundle: Bundle?) {
+        setUpTopBar(true)
         showBackIconAndClick()
         mObjectId = intent.getStringExtra("id")
         mTopBar.addRightTextButton("完成",R.id.add_bill_submit).setOnClickListener {
@@ -26,7 +28,7 @@ class AddBillActivity :BaseActivity(),IAddBillView {
             bean.describe = add_bill_remark.text.toString()
             bean.time = add_bill_time.text.toString()
             bean.money = add_bill_cash.text.toString()
-            bean.money = add_bill_cash.text.toString()
+            bean.consumer = App.user
             presenter?.submit(bean)
         }
     }

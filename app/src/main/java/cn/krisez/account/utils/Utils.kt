@@ -1,6 +1,9 @@
 package cn.krisez.account.utils
 
+import android.content.Context
 import android.util.SparseArray
+import android.widget.Toast
+import cn.krisez.account.R
 
 /**
  *Created by zhouchaoxing on 2019/11/1
@@ -30,4 +33,31 @@ object Utils {
     }
 
     fun getTypeName(type: Int): String = array.get(type)
+
+    fun getTypeIcon(type:Int):Int{
+        when(type){
+            0 -> return R.drawable.ic_bill
+            1 -> return R.drawable.ic_canyin
+            2 -> return R.drawable.ic_gouwuche
+            3 -> return R.drawable.ic_house
+            4 -> return R.drawable.ic_bus
+            5 -> return R.drawable.ic_tongxun
+            6 -> return R.drawable.ic_yule
+            7 -> return R.drawable.ic_hongbao
+            8 -> return R.drawable.ic_jiaoyu
+            9 -> return R.drawable.ic_lvxing
+            10 -> return R.drawable.ic_jiaoyu
+            11 -> return R.drawable.ic_touzi
+            12 -> return R.drawable.ic_gengduo
+            13 -> return R.drawable.ic_gongzi
+            14 -> return R.drawable.ic_hongbao
+            15 -> return R.drawable.ic_licai
+            16 -> return R.drawable.ic_gengduo
+        }
+        return 0
+    }
+
+    fun showToast(context: Context,msg:String){
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+    }
 }
