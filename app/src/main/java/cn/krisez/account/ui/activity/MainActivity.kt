@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.bmob.v3.BmobUser
 import cn.krisez.account.App
 import cn.krisez.account.R
@@ -34,7 +36,9 @@ import kotlinx.android.synthetic.main.navigation_header.view.*
 class MainActivity : BaseActivity(), IMainView {
 
     private var mPresenter: MainPresenter? = null
-    private val mAdapter:BillAdapter = BillAdapter(arrayListOf())
+    private val mAdapter = BillAdapter(arrayListOf())
+
+    override fun newView(): View = View.inflate(this, R.layout.activity_main, null)
 
     override fun init(bundle: Bundle?) {
         setRefreshEnable(true)
@@ -45,11 +49,16 @@ class MainActivity : BaseActivity(), IMainView {
         checkPermissions(needPermissions)
 
         bill_recycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        bill_recycler.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         bill_recycler.adapter = mAdapter
+
+        mSwipeRefreshLayout.isRefreshing = true
+        mPresenter?.getNewData()
+
     }
 
     private fun initListener(){
-        add_new_bill.setOnClickListener{
+        main_add_new_bill.setOnClickListener{
             startActivity(Intent(this,AddBillActivity::class.java))
         }
         mAdapter.setOnItemClickListener{a,_,p ->
@@ -152,7 +161,7 @@ class MainActivity : BaseActivity(), IMainView {
     }
 
     override fun notifyList(list: MutableList<ConsumerBean>) {
-        mAdapter.setNewData(list)
+        mAdapter.setNewData(list.reversed())
         disableRefresh()
     }
 
@@ -199,8 +208,6 @@ class MainActivity : BaseActivity(), IMainView {
         super.error(s)
         tipLog?.dismiss()
     }
-
-    override fun newView(): View = View.inflate(this, R.layout.activity_main, null)
 
     override fun presenter(): Presenter? {
         mPresenter = MainPresenter(this, this)

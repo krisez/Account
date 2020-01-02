@@ -10,4 +10,5 @@
     <string name="password_hint">密码：6~15位</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+    <string name="add_bill">添加账单</string>
 </resources>

@@ -1,6 +1,5 @@
 package cn.krisez.account.ui.activity
 
-import android.location.Location
 import android.os.Bundle
 import android.view.View
 import cn.krisez.account.App
@@ -11,6 +10,8 @@ import cn.krisez.account.view.IAddBillView
 import cn.krisez.framework.base.BaseActivity
 import cn.krisez.framework.base.Presenter
 import kotlinx.android.synthetic.main.activity_add_bill.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  *Created by zhouchaoxing on 2019/11/29
@@ -26,7 +27,11 @@ class AddBillActivity :BaseActivity(),IAddBillView {
             val bean = ConsumerBean()
             bean.money = add_bill_cash.text.toString()
             bean.describe = add_bill_remark.text.toString()
-            bean.time = add_bill_time.text.toString()
+            bean.time = if(add_bill_time.text.toString().isEmpty()){
+                SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
+            }else{
+                add_bill_time.text.toString()
+            }
             bean.money = add_bill_cash.text.toString()
             bean.consumer = App.user
             presenter?.submit(bean)

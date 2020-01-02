@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activity.MainActivity">
-    <!--    tools:showIn="@layout/activity_main"-->
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_nested_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/main_add_new_bill"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,24 +26,24 @@
                 app:layout_constraintEnd_toStartOf="@id/group_user_other"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:qmui_is_circle="true"
-                />
+                app:qmui_is_circle="true" />
 
             <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                 android:id="@+id/group_user_other"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="@dimen/dp_12"
-                app:qmui_is_circle="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/group_user"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:qmui_is_circle="true" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/bill_today_total"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_margin="@dimen/dp_12"
+                app:contentPadding="8dp"
                 app:cardBackgroundColor="@color/color_pink"
                 app:cardCornerRadius="@dimen/dp_6"
                 app:layout_constraintTop_toBottomOf="@id/group_user">
@@ -55,13 +57,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="今日支出" />
+                    android:text="本月支出" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
-                    android:text="今日收入" />
+                    android:text="本月收入" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,14 +80,36 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_new_bill"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/main_add_new_bill"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_bill"
-        app:elevation="24dp"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:background="@drawable/bg_add_bill"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/main_nested_scroll">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="4dp"
+            android:background="@color/dark_gray" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add_bill" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:text="@string/add_bill"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

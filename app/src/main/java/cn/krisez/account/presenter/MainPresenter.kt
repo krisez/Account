@@ -46,7 +46,6 @@ class MainPresenter(view: IMainView, context: Context) : Presenter(view, context
                     if (e == null) {
                         if (!list.isNullOrEmpty()) {
                             val group = list[0]
-                            Logs.d("asdads", "${group.g_a}")
                             SharePreferencesUtils.saveGroupGid(group.g_id)
                             if (group.agree == 1 && group.g_a.objectId == App.user.objectId) {
                                 mView.showApply(group.g_b)
@@ -85,6 +84,7 @@ class MainPresenter(view: IMainView, context: Context) : Presenter(view, context
     private fun queryBill() {
         val query = BmobQuery<ConsumerBean>()
         query.addWhereEqualTo("consumer", App.user)
+        query.order("time")
         query.findObjects(object : FindListener<ConsumerBean>() {
             override fun done(list: MutableList<ConsumerBean>?, e: BmobException?) {
                 Log.d("MainPresenter","done")

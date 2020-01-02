@@ -314,8 +314,7 @@ class XEditText @JvmOverloads constructor(
         }
     }
 
-    private val isTextEmpty: Boolean
-        private get() = text.toString().trim { it <= ' ' }.length == 0
+    private val isTextEmpty: Boolean = text.toString().trim { it <= ' ' }.isEmpty()
 
     private fun dp2px(dp: Int): Int {
         return TypedValue.applyDimension(

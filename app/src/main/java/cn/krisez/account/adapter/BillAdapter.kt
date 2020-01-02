@@ -13,11 +13,13 @@ class BillAdapter(data: MutableList<ConsumerBean>?) : BaseQuickAdapter<ConsumerB
 
     override fun convert(helper: BaseViewHolder, item: ConsumerBean?) {
         item?.let {
-            helper.setText(R.id.item_bill_money,it.money)
+            helper.setText(R.id.item_bill_money,"${it.money}元")
             helper.setText(R.id.item_bill_describe,it.describe)
             helper.setText(R.id.item_bill_type,Utils.getTypeName(it.type))
+            helper.setText(R.id.item_bill_time,it.time.substring(10))
             helper.setImageResource(R.id.item_bill_icon,Utils.getTypeIcon(it.type))
         }
+
     }
 
 }
