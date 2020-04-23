@@ -97,10 +97,10 @@
             android:background="@color/dark_gray" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_add_bill" />
+            android:src="@drawable/ic_bill" />
 
         <TextView
             android:layout_width="wrap_content"
